@@ -15,29 +15,29 @@ export default function CrystalBackground() {
 
       {/* Floating Dark Crystal Shards with Neon Edges */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(8)].map((_, i) => (
+        {[...Array(4)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute backdrop-blur-[1px]"
+            className="absolute"
             style={{
-              width: `${150 + i * 80}px`,
-              height: `${200 + i * 60}px`,
-              left: `${(i * 13) % 90}%`,
-              top: `${(i * 31) % 90}%`,
-              background: 'linear-gradient(135deg, rgba(0, 215, 215, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%)',
-              border: '0.5px solid rgba(0, 215, 215, 0.15)',
+              width: `${120 + i * 100}px`,
+              height: `${160 + i * 80}px`,
+              left: `${(i * 23) % 85}%`,
+              top: `${(i * 29) % 80}%`,
+              background: 'linear-gradient(135deg, rgba(0, 215, 215, 0.04) 0%, rgba(139, 92, 246, 0.04) 100%)',
+              border: '0.5px solid rgba(0, 215, 215, 0.12)',
               clipPath: i % 2 === 0 
                 ? 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' 
                 : 'polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%)',
-              boxShadow: 'inset 0 0 20px rgba(0, 215, 215, 0.05)',
+              boxShadow: 'inset 0 0 15px rgba(0, 215, 215, 0.04)',
             }}
             animate={{
-              rotate: [i * 45, i * 45 + 360],
-              y: [0, -30, 0],
-              opacity: [0.3, 0.6, 0.3],
+              rotate: [i * 90, i * 90 + 360],
+              y: [0, -20, 0],
+              opacity: [0.25, 0.5, 0.25],
             }}
             transition={{
-              duration: 25 + i * 5,
+              duration: 30 + i * 10,
               repeat: Infinity,
               ease: "linear"
             }}
@@ -46,7 +46,7 @@ export default function CrystalBackground() {
       </div>
 
       {/* Electric Violet Light Leaks */}
-      <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[70%] bg-violet-600/10 rounded-full blur-[180px] animate-pulse" />
+      <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[70%] bg-violet-600/10 rounded-full blur-[180px]" />
       <div className="absolute bottom-[-15%] left-[-10%] w-[50%] h-[60%] bg-indigo-600/10 rounded-full blur-[160px]" />
       <div className="absolute top-[20%] left-[10%] w-[30%] h-[40%] bg-[#00D7D7]/5 rounded-full blur-[140px]" />
 
@@ -73,21 +73,20 @@ export default function CrystalBackground() {
         </g>
 
         {/* Shimmering Particle Nodes */}
-        {[...Array(20)].map((_, i) => (
+        {[...Array(10)].map((_, i) => (
           <circle
             key={i}
-            cx={`${(i * 7) % 100}%`}
-            cy={`${(i * 13) % 100}%`}
-            r="1"
+            cx={`${(i * 11) % 100}%`}
+            cy={`${(i * 17) % 100}%`}
+            r="1.2"
             fill="#00D7D7"
-            filter="url(#neon-glow)"
           >
             <animate
               attributeName="opacity"
-              values="0;1;0"
-              dur={`${2 + (i % 3)}s`}
+              values="0.1;1;0.1"
+              dur={`${2.5 + (i % 3)}s`}
               repeatCount="indefinite"
-              begin={`${i * 0.2}s`}
+              begin={`${i * 0.3}s`}
             />
           </circle>
         ))}

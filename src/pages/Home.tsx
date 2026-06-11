@@ -13,14 +13,17 @@ export default function Home() {
   const [searchParams] = useSearchParams();
   const [activeCategory, setActiveCategory] = useState('all');
   const [recentlyPlayed, setRecentlyPlayed] = useState<string[]>([]);
+  const [displayCount, setDisplayCount] = useState(24);
 
   useEffect(() => {
     const categoryParam = searchParams.get('category');
     if (categoryParam) {
       setActiveCategory(categoryParam);
-      // Scroll to top when category changes
-      window.scrollTo(0, 0);
+    } else {
+      setActiveCategory('all');
     }
+    // Scroll to top when category changes
+    window.scrollTo(0, 0);
   }, [searchParams]);
 
   useEffect(() => {
@@ -29,6 +32,10 @@ export default function Home() {
       setRecentlyPlayed(JSON.parse(saved));
     }
   }, []);
+
+  useEffect(() => {
+    setDisplayCount(24);
+  }, [activeCategory, searchQuery]);
 
   const filteredGames = useMemo(() => {
     return GAMES.filter(game => {
@@ -72,7 +79,7 @@ export default function Home() {
                 </motion.div>
 
                 {/* DENSE ICON GRID */}
-                {filteredGames.slice(0, 72).map((game, index) => {
+                {filteredGames.slice(0, displayCount).map((game, index) => {
                   // Create a more varied distribution of big tiles
                   const bigIndices = [1, 5, 8, 14, 19, 25, 32, 40, 48, 55, 63];
                   const isBig = bigIndices.includes(index);
@@ -82,6 +89,20 @@ export default function Home() {
                   );
                 })}
               </div>
+
+              {/* LOAD MORE BUTTON */}
+              {filteredGames.length > displayCount && (
+                <div className="flex justify-center mt-8 md:mt-10 mb-12">
+                  <motion.button
+                    whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(0, 215, 215, 0.4)' }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setDisplayCount(prev => Math.min(prev + 24, filteredGames.length))}
+                    className="relative px-8 py-3.5 bg-black/40 backdrop-blur-3xl border-2 border-[#00D7D7]/40 text-[#00D7D7] rounded-xl md:rounded-2xl font-display font-medium text-xs uppercase tracking-widest hover:border-[#00D7D7] transition-all duration-300"
+                  >
+                    Load More Games
+                  </motion.button>
+                </div>
+              )}
 
               {/* Categories Section */}
               <motion.div 

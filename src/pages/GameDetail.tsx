@@ -253,8 +253,8 @@ export default function GameDetail() {
 
             {/* HORIZONTAL QUICK LINKS UNDER FRAME */}
             <div className="w-full max-w-[860px] mt-2">
-              <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
-                {GAMES.filter(g => g.id !== id).slice(23, 31).map((g) => (
+              <div className="grid grid-cols-4 gap-2">
+                {GAMES.filter(g => g.id !== id).slice(23, 27).map((g) => (
                    <div key={g.id} className="w-full aspect-square transform hover:-translate-y-1 transition-transform">
                      <GameCard game={g} />
                    </div>
@@ -267,7 +267,7 @@ export default function GameDetail() {
 
           {/* SIDEBAR RIGHT (3 Columns of icons) */}
           <div className="hidden xl:grid grid-cols-3 w-[280px] md:w-[320px] shrink-0 gap-2 h-fit mb-20">
-             {GAMES.filter(g => g.id !== id).slice(5, 23).map(g => (
+             {GAMES.filter(g => g.id !== id).slice(5, 11).map(g => (
                 <div key={g.id} className="w-full aspect-square">
                    <GameCard key={g.id} game={g} />
                 </div>
@@ -280,8 +280,8 @@ export default function GameDetail() {
         <div className="mt-12 flex flex-col gap-16 w-full">
           {/* CURATED RECOMMENDATIONS - Wider */}
           <div className="w-full">
-            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-3">
-              {GAMES.slice(15, 39).map((g) => (
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-3">
+              {GAMES.slice(15, 27).map((g) => (
                  <div key={g.id} className="w-full aspect-square">
                    <GameCard game={g} />
                  </div>
